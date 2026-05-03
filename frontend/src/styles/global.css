@@ -1,0 +1,126 @@
+/* LIGHT MODE (DEFAULT) - Vibrant & Modern */
+:root {
+  --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+  --bg-surface: rgba(255, 255, 255, 0.75);
+  --card-blur: blur(16px);
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary: #ec4899;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: rgba(226, 232, 240, 0.6);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* DARK MODE OVERRIDE - Deep Space & Neon */
+.dark {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --bg-surface: rgba(30, 41, 59, 0.65);
+  --border: rgba(51, 65, 85, 0.5);
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+}
+
+/* CRITICAL MOBILE FIX: Force padding to be calculated INSIDE the width */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* CRITICAL MOBILE FIX: Lock width to viewport, hide horizontal scroll */
+html, body {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-image 0.5s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Global Components - Glassmorphism */
+.card {
+  background: var(--bg-surface);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 28px;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--text);
+  outline: none;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.dark .input-field {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+}
+
+.btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  text-align: center;
+  width: 100%; /* Default to full width for safety, overridden by inline styles if needed */
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+  filter: brightness(1.1);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (min-width: 769px) {
+  .btn { width: auto; } /* Buttons only go full width on mobile */
+}

@@ -1,0 +1,287 @@
+/* ========================================================
+   BASE DASHBOARD STYLES
+   ======================================================== */
+.dashboard-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.dashboard-header h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.controls-panel {
+  background: var(--bg-surface);
+  backdrop-filter: var(--card-blur);
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================================
+   GENERATOR DASHBOARD (PIPELINE & CARDS)
+   ======================================================== */
+.algo-card {
+  background: var(--bg-surface);
+  backdrop-filter: var(--card-blur);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+  position: relative;
+  min-width: 0; 
+  width: 100%;
+  overflow: hidden;
+}
+
+.algo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.algo-card.winner {
+  border: 2px solid var(--success);
+  background: linear-gradient(to bottom, rgba(16, 185, 129, 0.05), transparent);
+}
+
+.winner-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--success);
+  color: white;
+  padding: 4px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.card-header h2 { margin: 0; font-size: 1.5rem; color: var(--text); }
+
+.security-badge {
+  background: var(--bg);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid var(--border);
+}
+
+.agent-section {
+  padding: 12px;
+  background: rgba(128, 128, 128, 0.03);
+  border-radius: 0 8px 8px 0;
+  animation: slideDown 0.4s ease-out;
+  min-width: 0; 
+  width: 100%;
+}
+
+.agent-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agent-content {
+  font-size: 13px;
+  color: var(--text-muted);
+  min-width: 0; 
+  width: 100%;
+}
+
+.key-box {
+  background: var(--bg);
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--primary);
+  word-break: break-all; 
+  overflow-wrap: anywhere; 
+  white-space: pre-wrap; 
+  max-height: 110px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.score-box {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid var(--success);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  color: var(--success);
+  font-weight: bold;
+  font-size: 16px;
+  animation: slideDown 0.5s ease-out;
+  margin-top: auto;
+}
+
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-surface);
+  backdrop-filter: var(--card-blur);
+  padding: 15px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================================
+   PASSWORD VAULT & MANAGE CREDENTIALS
+   ======================================================== */
+.vault-inputs-container { display: flex; gap: 15px; align-items: center; width: 100%; }
+.vault-input-label { flex: 1; }
+.vault-input-desc { flex: 2; }
+.osbv-details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; width: 100%; }
+.osbv-mobile-toggle { display: none; }
+.key-display-box { background: var(--bg); padding: 10px; border-radius: 6px; display: block; word-break: break-all; white-space: pre-wrap; font-size: 12px; color: var(--primary); flex: 1; border: 1px solid var(--border); max-height: 80px; overflow-y: auto; }
+.vault-mode-toggles { display: flex; gap: 10px; margin-bottom: 15px; width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+
+.mc-table { width: 100%; border-collapse: collapse; }
+.mc-table th { padding: 12px 20px; text-align: left; border-bottom: 2px solid var(--border); color: var(--text-muted); }
+.mc-row { transition: var(--transition); border-bottom: 1px solid var(--border); }
+.mc-row:hover { background: rgba(128, 128, 128, 0.05); }
+.mc-inactive-row { opacity: 0.65; background: rgba(239, 68, 68, 0.02); }
+.mc-cell { padding: 16px 20px; }
+
+/* ========================================================
+   GLOBAL MOBILE OVERRIDES (STRICT WIDTH LOCK)
+   ======================================================== */
+@media (max-width: 768px) {
+  
+  /* Tame the headers so they never break the width */
+  .dashboard-header h1 { font-size: clamp(1.4rem, 5vw, 1.8rem); white-space: normal; overflow: hidden; }
+  
+  .controls-panel { 
+    flex-direction: column; 
+    align-items: stretch; 
+    padding: 16px; /* Reduced mobile padding inside cards */
+  }
+
+  /* Force the results grid into a single column strictly bound to 100% */
+  .results-grid { 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+    width: 100%;
+  }
+  
+  .algo-card { padding: 16px; } /* Tighter mobile card padding */
+  .algo-card:hover { transform: none; }
+
+  /* OSBV Section Fixes */
+  .osbv-details-grid { display: none; }
+  .osbv-details-grid.expanded { display: flex; flex-direction: column; gap: 10px; }
+  .osbv-mobile-toggle { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 15px; padding: 12px; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 8px; font-weight: 600; cursor: pointer; }
+  .osbv-link-btn { width: 100%; text-align: center; }
+
+  /* Inputs container strictly vertical */
+  .vault-inputs-container { flex-direction: column; align-items: stretch; width: 100%; }
+  .vault-input-label, .vault-input-desc, .vault-input-date { width: 100% !important; max-width: 100%; }
+  .vault-mode-toggles { flex-direction: column; }
+
+  /* MC-TABLE MOBILE CARD TRANSFORMATION - Locked width */
+  .card { padding: 16px !important; } /* Standardize card padding on mobile */
+  .mc-table thead { display: none; }
+  .mc-table, .mc-table tbody { display: flex; flex-direction: column; width: 100%; gap: 12px; padding: 0; margin: 0; box-sizing: border-box; }
+  
+  .mc-row { 
+    display: flex; flex-direction: column; background: var(--bg-surface); 
+    border: 1px solid var(--border) !important; border-radius: 12px; 
+    box-shadow: var(--shadow-sm); padding: 5px 12px; margin-bottom: 5px; 
+    width: 100%; box-sizing: border-box;
+  }
+  
+  .mc-cell { 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    padding: 12px 0; border-bottom: 1px solid rgba(128, 128, 128, 0.15) !important; 
+    text-align: right; width: 100%; gap: 10px;
+  }
+  
+  .mc-cell:last-child { border-bottom: none !important; }
+  
+  .mc-cell::before { 
+    content: attr(data-label); font-weight: 700; color: var(--text-muted); 
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; 
+    text-align: left; flex-shrink: 0; width: 35%; /* Fixed width for labels so values don't squish them */
+  }
+  
+  .mc-cell-content { 
+    display: flex; flex-direction: column; align-items: flex-end; 
+    text-align: right; width: 65%; word-break: break-word; 
+  }
+
+  /* Specific fix for Long Keys in Vault & Manage Credentials */
+  .mc-cell[data-label="Complete Credential Data"], 
+  .mc-cell[data-label="Key Data"] { 
+    flex-direction: column !important; align-items: flex-start !important; 
+    text-align: left !important; gap: 8px;
+  }
+  
+  .mc-cell[data-label="Complete Credential Data"]::before,
+  .mc-cell[data-label="Key Data"]::before { width: 100%; margin-bottom: 4px; }
+  
+  .mc-cell[data-label="Complete Credential Data"] .mc-cell-content,
+  .mc-cell[data-label="Key Data"] .mc-cell-content { 
+    max-width: 100% !important; width: 100%; align-items: stretch !important; 
+  }
+
+  .mc-actions-cell { flex-direction: column; align-items: center; padding-top: 16px; }
+  .mc-actions-cell::before { display: none; }
+  .mc-actions-wrapper { display: flex; width: 100%; gap: 12px; justify-content: center; }
+}
